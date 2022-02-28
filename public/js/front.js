@@ -2093,28 +2093,67 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Posts",
   data: function data() {
     return {
-      post: []
+      post: [],
+      CommentData: {
+        name: "",
+        comment: "",
+        post_id: null
+      },
+      CommentErrors: {},
+      inviato: false
     };
   },
+  methods: {
+    addComment: function addComment() {
+      var _this = this;
+
+      axios.post("/api/comments", this.CommentData).then(function (response) {
+        _this.CommentData.name = "";
+        _this.CommentData.comment = "";
+        _this.inviato = true;
+        _this.CommentErrors = {};
+      })["catch"](function (error) {
+        _this.inviato = false;
+        _this.CommentErrors = error.response.data.errors;
+      });
+    }
+  },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get("/api/posts/".concat(this.$route.params.slug)).then(function (response) {
-      _this.post = response.data;
+      _this2.post = response.data;
+      _this2.CommentData.post_id = _this2.post.id;
     })["catch"](function (error) {
-      _this.$router.push({
+      _this2.$router.push({
         name: "NotFound"
       });
     });
-  },
-  methods: {
-    showPost: function showPost() {
-      alert('ciao');
-    }
   }
 });
 
@@ -38717,15 +38756,7 @@ var render = function () {
                 _vm._v(_vm._s(_vm.post.title)),
               ]),
               _vm._v(" "),
-              _c("div", [
-                _c("span", { staticClass: "font-italic" }, [
-                  _vm._v("Category: "),
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "badge badge-success" }, [
-                  _vm._v(_vm._s(_vm.post.category.name)),
-                ]),
-              ]),
+              _vm._m(0),
             ]),
             _vm._v(" "),
             _c(
@@ -38779,13 +38810,154 @@ var render = function () {
                 ]),
               ]
             ),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-header" }, [
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function ($event) {
+                      $event.preventDefault()
+                      return _vm.addComment()
+                    },
+                  },
+                },
+                [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "name" } }, [_vm._v("Nome")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.CommentData.name,
+                          expression: "CommentData.name",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "name",
+                        placeholder: "Inserisci il nome",
+                      },
+                      domProps: { value: _vm.CommentData.name },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.CommentData, "name", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "comment" } }, [
+                      _vm._v("Commento"),
+                    ]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.CommentData.comment,
+                          expression: "CommentData.comment",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        id: "comment",
+                        cols: "30",
+                        rows: "2",
+                        placeholder: "Inserisci il commento",
+                      },
+                      domProps: { value: _vm.CommentData.comment },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.CommentData,
+                            "comment",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                    _vm._v(" "),
+                    _vm.CommentErrors.comment
+                      ? _c(
+                          "div",
+                          { staticClass: "card text-white bg-danger my-3" },
+                          [
+                            _c(
+                              "ul",
+                              _vm._l(
+                                _vm.CommentErrors.comment,
+                                function (error, index) {
+                                  return _c("li", { key: index }, [
+                                    _vm._v(_vm._s(error)),
+                                  ])
+                                }
+                              ),
+                              0
+                            ),
+                          ]
+                        )
+                      : _vm._e(),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" },
+                    },
+                    [_vm._v("Invia")]
+                  ),
+                ]
+              ),
+              _vm._v(" "),
+              _vm.inviato
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "card text-white bg-success my-3 p-2",
+                      attrs: { role: "button" },
+                      on: {
+                        click: function ($event) {
+                          _vm.inviato = false
+                        },
+                      },
+                    },
+                    [
+                      _c("span", [
+                        _vm._v("Commento Inviato, in fase di approvazione !"),
+                      ]),
+                    ]
+                  )
+                : _vm._e(),
+            ]),
           ]),
         ]),
       ]),
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("span", { staticClass: "font-italic" }, [_vm._v("Category: ")]),
+    ])
+  },
+]
 render._withStripped = true
 
 
