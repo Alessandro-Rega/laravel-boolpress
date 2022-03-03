@@ -8,7 +8,7 @@
                         <h2 class="font-weight-bold">{{post.title}}</h2>
                         <div>
                             <span class="font-italic">Category: </span>
-                            <!-- <span class="badge badge-success">{{post.category.name}}</span> -->
+                            <span class="badge badge-success">{{post.category.name}}</span>
                         </div>
                     </div>
                     <div class="ml-4 mt-3">
@@ -26,6 +26,7 @@
                         </div>
                     </div>
                     <div class="card-header">
+                        <h3>Commenta</h3>
                         <form @submit.prevent="addComment()">
                             <div class="form-group">
                                 <label for="name">Nome</label>
@@ -45,9 +46,10 @@
                         <div v-if="inviato" class="card text-white bg-success my-3 p-2" v-on:click="inviato = false" role="button">
                             <span>Commento Inviato, in fase di approvazione !</span>
                         </div>
-                        <div class="card-body" v-for="comment in post.comments" :key="comment.id">
-                            <div class="">{{comment.name}}</div>
-                            <div class="">{{comment.comment}}</div>
+                        <h3 class="mt-5">Commenti</h3>
+                        <div class="card bg-light my-3" v-for="comment in post.comments" :key="comment.id">
+                            <div class="card-header">{{comment.name}}</div>
+                            <div class="card-body py-2">{{comment.comment}}</div>
                         </div>
                     </div>
                 </div>

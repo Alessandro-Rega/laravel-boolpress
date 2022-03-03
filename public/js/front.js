@@ -2118,6 +2118,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Posts",
   data: function data() {
@@ -38760,7 +38762,15 @@ var render = function () {
                 _vm._v(_vm._s(_vm.post.title)),
               ]),
               _vm._v(" "),
-              _vm._m(0),
+              _c("div", [
+                _c("span", { staticClass: "font-italic" }, [
+                  _vm._v("Category: "),
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "badge badge-success" }, [
+                  _vm._v(_vm._s(_vm.post.category.name)),
+                ]),
+              ]),
             ]),
             _vm._v(" "),
             _c(
@@ -38819,6 +38829,8 @@ var render = function () {
               "div",
               { staticClass: "card-header" },
               [
+                _c("h3", [_vm._v("Commenta")]),
+                _vm._v(" "),
                 _c(
                   "form",
                   {
@@ -38953,14 +38965,20 @@ var render = function () {
                     )
                   : _vm._e(),
                 _vm._v(" "),
+                _c("h3", { staticClass: "mt-5" }, [_vm._v("Commenti")]),
+                _vm._v(" "),
                 _vm._l(_vm.post.comments, function (comment) {
                   return _c(
                     "div",
-                    { key: comment.id, staticClass: "card-body" },
+                    { key: comment.id, staticClass: "card bg-light my-3" },
                     [
-                      _c("div", {}, [_vm._v(_vm._s(comment.name))]),
+                      _c("div", { staticClass: "card-header" }, [
+                        _vm._v(_vm._s(comment.name)),
+                      ]),
                       _vm._v(" "),
-                      _c("div", {}, [_vm._v(_vm._s(comment.comment))]),
+                      _c("div", { staticClass: "card-body py-2" }, [
+                        _vm._v(_vm._s(comment.comment)),
+                      ]),
                     ]
                   )
                 }),
@@ -38973,16 +38991,7 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("span", { staticClass: "font-italic" }, [_vm._v("Category: ")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

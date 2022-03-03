@@ -25,7 +25,15 @@
                 @foreach ($posts as $post)
                     <tr>
                         <th scope="row">{{$post->id}}</th>
-                        <td>{{$post->title}}</td>
+                        <td>
+                            {{$post->title}}
+                            @foreach ($post->comments->all() as $comment)
+                                @if($comment->approved == 0)
+                                <span class="d-block w-25 badge badge-warning">Commenti</span>
+                                @break
+                                @endif
+                            @endforeach
+                        </td>
                         @if(isset($post->category->name))
                         <td>{{$post->category->name}}</td>
                         @else

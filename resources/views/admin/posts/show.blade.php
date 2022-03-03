@@ -65,13 +65,17 @@
                             <tr>
                                 <th scope="row">{{$comment->name}}</th>
                                 <td>{{$comment->comment}}</td>
-                                <td class="d-flex">
-                                    <form class="mr-4" action="{{route('comments.update', $comment->id)}}" method="POST">
+                                <td>
+                                    @if($comment->approved == 0)
+                                    <form class="mr-4 d-inline" action="{{route('comments.update', $comment->id)}}" method="POST">
                                         @csrf
                                         @method('PATCH')
                                         <button type="submit" class="btn btn-success">Approva</button>
                                     </form>
-                                    <form action="{{route("comments.destroy", $comment->id)}}" method="POST">
+                                    @else
+                                    <span class="d-inline approvato badge badge-info">Approvato</span>
+                                    @endif
+                                    <form class="d-inline" action="{{route("comments.destroy", $comment->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="sumbit" class="btn btn-danger">Delete</button>

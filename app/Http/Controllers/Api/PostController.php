@@ -19,7 +19,7 @@ class PostController extends Controller
             $query->where('approved','1');
         }])->first();
         
-        if(empty($post)){
+        if(empty($post) || $post->published == false){
             return response()->json(["message" => "Not Found"], 404);
         }
         
