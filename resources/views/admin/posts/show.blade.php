@@ -49,6 +49,40 @@
                         <button type="sumbit" class="btn btn-danger">Delete</button>
                     </form>
                 </div>
+                <div class="card-body" id="comments">
+                    @if($post->comments->all())
+                    <h3>Commenti</h3>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Comment</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($post->comments as $comment)
+                            <tr>
+                                <th scope="row">{{$comment->name}}</th>
+                                <td>{{$comment->comment}}</td>
+                                <td class="d-flex">
+                                    <form class="mr-4" action="{{route('comments.update', $comment->id)}}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="btn btn-success">Approva</button>
+                                    </form>
+                                    <form action="{{route("comments.destroy", $comment->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="sumbit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    @endif
+                </div>
             </div>
         </div>
     </div>

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Comment;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CommentMail;
 
 class CommentController extends Controller
 {
@@ -32,6 +34,7 @@ class CommentController extends Controller
         $newComment->post_id = $data['post_id'];
         $newComment->save();
 
+        Mail::to('account@mail.it')->send(new CommentMail());
         return response()->json([
             "success" => true
         ]);

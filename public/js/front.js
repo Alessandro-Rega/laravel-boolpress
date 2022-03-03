@@ -2114,6 +2114,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Posts",
   data: function data() {
@@ -38811,137 +38815,158 @@ var render = function () {
               ]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "card-header" }, [
-              _c(
-                "form",
-                {
-                  on: {
-                    submit: function ($event) {
-                      $event.preventDefault()
-                      return _vm.addComment()
+            _c(
+              "div",
+              { staticClass: "card-header" },
+              [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function ($event) {
+                        $event.preventDefault()
+                        return _vm.addComment()
+                      },
                     },
                   },
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "name" } }, [_vm._v("Nome")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.CommentData.name,
-                          expression: "CommentData.name",
+                  [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "name" } }, [_vm._v("Nome")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.CommentData.name,
+                            expression: "CommentData.name",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "name",
+                          placeholder: "Inserisci il nome",
                         },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "name",
-                        placeholder: "Inserisci il nome",
-                      },
-                      domProps: { value: _vm.CommentData.name },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.CommentData, "name", $event.target.value)
+                        domProps: { value: _vm.CommentData.name },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.CommentData,
+                              "name",
+                              $event.target.value
+                            )
+                          },
                         },
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "comment" } }, [
-                      _vm._v("Commento"),
+                      }),
                     ]),
                     _vm._v(" "),
-                    _c("textarea", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.CommentData.comment,
-                          expression: "CommentData.comment",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        id: "comment",
-                        cols: "30",
-                        rows: "2",
-                        placeholder: "Inserisci il commento",
-                      },
-                      domProps: { value: _vm.CommentData.comment },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.CommentData,
-                            "comment",
-                            $event.target.value
-                          )
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _vm.CommentErrors.comment
-                      ? _c(
-                          "div",
-                          { staticClass: "card text-white bg-danger my-3" },
-                          [
-                            _c(
-                              "ul",
-                              _vm._l(
-                                _vm.CommentErrors.comment,
-                                function (error, index) {
-                                  return _c("li", { key: index }, [
-                                    _vm._v(_vm._s(error)),
-                                  ])
-                                }
-                              ),
-                              0
-                            ),
-                          ]
-                        )
-                      : _vm._e(),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "submit" },
-                    },
-                    [_vm._v("Invia")]
-                  ),
-                ]
-              ),
-              _vm._v(" "),
-              _vm.inviato
-                ? _c(
-                    "div",
-                    {
-                      staticClass: "card text-white bg-success my-3 p-2",
-                      attrs: { role: "button" },
-                      on: {
-                        click: function ($event) {
-                          _vm.inviato = false
-                        },
-                      },
-                    },
-                    [
-                      _c("span", [
-                        _vm._v("Commento Inviato, in fase di approvazione !"),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "comment" } }, [
+                        _vm._v("Commento"),
                       ]),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.CommentData.comment,
+                            expression: "CommentData.comment",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          id: "comment",
+                          cols: "30",
+                          rows: "2",
+                          placeholder: "Inserisci il commento",
+                        },
+                        domProps: { value: _vm.CommentData.comment },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.CommentData,
+                              "comment",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _vm.CommentErrors.comment
+                        ? _c(
+                            "div",
+                            { staticClass: "card text-white bg-danger my-3" },
+                            [
+                              _c(
+                                "ul",
+                                _vm._l(
+                                  _vm.CommentErrors.comment,
+                                  function (error, index) {
+                                    return _c("li", { key: index }, [
+                                      _vm._v(_vm._s(error)),
+                                    ])
+                                  }
+                                ),
+                                0
+                              ),
+                            ]
+                          )
+                        : _vm._e(),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" },
+                      },
+                      [_vm._v("Invia")]
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.inviato
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "card text-white bg-success my-3 p-2",
+                        attrs: { role: "button" },
+                        on: {
+                          click: function ($event) {
+                            _vm.inviato = false
+                          },
+                        },
+                      },
+                      [
+                        _c("span", [
+                          _vm._v("Commento Inviato, in fase di approvazione !"),
+                        ]),
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm._l(_vm.post.comments, function (comment) {
+                  return _c(
+                    "div",
+                    { key: comment.id, staticClass: "card-body" },
+                    [
+                      _c("div", {}, [_vm._v(_vm._s(comment.name))]),
+                      _vm._v(" "),
+                      _c("div", {}, [_vm._v(_vm._s(comment.comment))]),
                     ]
                   )
-                : _vm._e(),
-            ]),
+                }),
+              ],
+              2
+            ),
           ]),
         ]),
       ]),

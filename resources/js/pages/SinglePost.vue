@@ -45,6 +45,10 @@
                         <div v-if="inviato" class="card text-white bg-success my-3 p-2" v-on:click="inviato = false" role="button">
                             <span>Commento Inviato, in fase di approvazione !</span>
                         </div>
+                        <div class="card-body" v-for="comment in post.comments" :key="comment.id">
+                            <div class="">{{comment.name}}</div>
+                            <div class="">{{comment.comment}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
